@@ -10,7 +10,7 @@ InformationPortal is a ASP.NET MVC5 web site designed to show number of useful m
 ## Features
 - DDD architectural design
 - DI Castle Windsor
-- Module-Zero LDAP Authorization (without LDAP using solution configuration "Without LDAP")
+- Module-Zero LDAP Authentication (without LDAP using solution configuration "Without LDAP")
 - AutoMapper
 - Real time messages with SignalR
 - Search with Elasticsearch
