@@ -62,4 +62,4 @@
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
 
-InformationPortal/Portal.Web/Content/* linguist-vendored
+InformationPortal/Portal.Web/Content/ * linguist-vendored
