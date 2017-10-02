@@ -1,0 +1,20 @@
+﻿@model Portal.Application.Content.DeleteDto
+
+@if (Model.IsDeleted)
+{
+    <a href="#" id="delete-content"
+       data-content-id="@Model.Id" data-update-targetId="@($"update-delete-{Model.Id}")"
+       data-msg="@($"{L("UnDelete")} \"{Model.Title}\"")">
+        <i class="fa fa-undo"></i>
+        <span>@L("UnDelete")</span>
+    </a>
+}
+else
+{
+    <a href="#" id="delete-content"
+       data-content-id="@Model.Id" data-update-targetId="@($"update-delete-{Model.Id}")"
+       data-msg="@($"{L("Delete")} \"{Model.Title}\"")">
+        <i class="fa fa-trash"></i>
+        <span>@L("Delete")</span>
+    </a>
+}

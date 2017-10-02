@@ -1,0 +1,158 @@
+﻿@using Portal.Web.Extensions
+@model Portal.Web.Models.Content.Books.DetailBookViewModel
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-default no-border ui-ribbon-container">
+                @if (Model.Book.ContentInfo.IsRecommend)
+                {
+                    <div class="ui-ribbon-wrapper ui-ribbon-danger">
+                        <div class="ui-ribbon">@L("TheBest")</div>
+                    </div>
+                }
+                <div class="box-header box-header-book-detail">
+                    <h4 class="box-title">@Model.Book.Title</h4>
+                    @if (Model.Book.ControlPanel.Delete.IsDeleted)
+                    {
+                        <span class="label label-danger">@L("Deleted")</span>
+                    }
+                    @if (!Model.Book.ControlPanel.Approve.IsApproved)
+                    {
+                        <span class="label label-warning">@L("NotApproved")</span>
+                    }
+                </div>
+                <div class="box-body box-body-book-detail">
+                    <div class="row">
+                        <div class="col-md-4 col-lg-3">
+                            <img class="img-responsive" src="@Model.Book.Picture" onerror="@($"this.src='{Model.DefaultPicture}'")" alt="image not found" />
+                        </div>
+                        <div class="col-md-8 col-lg-9">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>@L("Catalog"):</td>
+                                        <td>
+                                            <ul class="catalogs">
+                                                @foreach (var catalog in Model.Book.Catalogs)
+                                                {
+                                                    <li>
+                                                        @if (catalog.IsAction)
+                                                        {
+                                                            @Ajax.ActionLink(linkText: catalog.Name, actionName: "Catalog", controllerName: "Books",
+                                                            ajaxOptions: new AjaxOptions { UpdateTargetId = "update-content" }, routeValues: new { catalogId = catalog.Id })
+                                                        }
+                                                        else
+                                                        {
+                                                            @catalog.Name
+                                                        }
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    @if (Model.Book.Authors != null && Model.Book.Authors.Any())
+                                    {
+                                        <tr>
+                                            <td>@(Model.Book.Authors.Count > 1 ? L("Authors") : L("Author")):</td>
+                                            <td>
+                                                <ul class="authors">
+                                                    @foreach (var author in Model.Book.Authors)
+                                                    {
+                                                        if (author.IsAction)
+                                                        {
+                                                            <li>@Ajax.ActionLink(linkText: author.Name, actionName: "Author", controllerName: "Books",
+                                                                ajaxOptions: new AjaxOptions { UpdateTargetId = "update-content" }, routeValues: new { authorId = author.Id })</li>
+                                                        }
+                                                        else
+                                                        {
+                                                            <li>@author.Name</li>
+                                                        }
+
+                                                    }
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    }
+                                    @if (!string.IsNullOrEmpty(Model.Book.DatePublication))
+                                    {
+                                        <tr><td>@L("DatePublication"):</td><td>@Model.Book.DatePublication</td></tr>
+                                    }
+
+                                    @if (!string.IsNullOrEmpty(Model.Book.Issue))
+                                    {
+                                        <tr><td>@L("Issue"):</td><td>@Model.Book.Issue</td></tr>
+                                    }
+
+                                    @if (!string.IsNullOrEmpty(Model.Book.Publisher))
+                                    {
+                                        <tr><td>@L("Publisher"):</td><td>@Model.Book.Publisher</td></tr>
+                                    }
+                                    <tr><td>@L("Language"):</td><td>@Model.Book.Language</td></tr>
+                                    <tr><td>@L("Format"):</td><td>@Model.Book.FileFormat</td></tr>
+                                    <tr><td>@L("Description"):</td><td>@Model.Book.Description</td></tr>
+                                    @if (Model.Book.Tags != null && Model.Book.Tags.Any(x => x.IsAction))
+                                    {
+                                        <tr>
+                                            <td colspan="2">
+                                                <ul class="tags">
+                                                    <li><i class="fa fa-tags"></i></li>
+                                                    @foreach (var tag in Model.Book.Tags)
+                                                    {
+                                                        if (tag.IsAction)
+                                                        {
+                                                            <li>
+                                                                @Ajax.ActionLink(linkText: tag.Name, actionName: "Tag", controllerName: "Books",
+                                                                    ajaxOptions: new AjaxOptions { UpdateTargetId = "update-content" }, routeValues: new { tagId = tag.Id })
+                                                            </li>
+                                                        }
+                                                    }
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-footer box-footer-book-detail">
+                    <ul class="nav navbar-nav pull-left">
+                        <li title="@L("BookDateAdded")">
+                            <i class="fa fa-calendar-o"></i>
+                            <span>
+                                @Model.Book.ContentInfo.CreationTime
+                            </span>
+                        </li>
+                        @if (Model.Book.ContentInfo.CreatorUserId != null)
+                        {
+                            <li title="@L("UserAddBook")">
+                                @Html.ActionLinkIconText(Model.Book.ContentInfo.CreatorUser, "Profile", "Users", "fa fa-user", null, new { id = Model.Book.ContentInfo.CreatorUserId })
+                            </li>
+                        }
+                        <li title="@L("BookViewersCount")">
+                            <i class="fa fa-eye"></i>
+                            <span>
+                                @Model.Book.ContentInfo.ViewersCount
+                            </span>
+                        </li>
+                        <li title="@L("BookFavoritesCount")">
+                            <i class="fa fa-star"></i>
+                            <span>
+                                @Model.Book.ContentInfo.FavoritesCount
+                            </span>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav pull-right">
+                        @Html.Partial("~/Views/Shared/Content/_ControlPanel.cshtml", Model.Book.ControlPanel)
+                        @Html.Partial("~/Views/Shared/Modals/_ModalContainer.cshtml")
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    @if (Model.IsShownSimilarResult)
+    {
+        @Html.Partial("_Similar", Model.SimilarBooks)
+    }
+</section>

@@ -1,0 +1,17 @@
+﻿@using Portal.Web.Extensions
+@model Portal.Application.Content.FavoriteDto
+    
+@{
+    var controllerName = ViewContext.RouteData.Values["controller"].ToString();
+}
+
+@if (Model.IsFavorite)
+{
+    @Ajax.ActionLinkIcon("Favorite", controllerName, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = $"update-favorite-{Model.Id}" },
+       "fa fa-star", new { contentId = Model.Id }, new { title = L("RemoveFavorite") })
+}
+else
+{
+    @Ajax.ActionLinkIcon("Favorite", controllerName, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = $"update-favorite-{Model.Id}" },
+       "fa fa-star-o", new { contentId = Model.Id }, new { title = L("AddFavorite") })
+}

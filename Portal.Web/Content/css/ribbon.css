@@ -1,0 +1,100 @@
+﻿.ui-ribbon-container {
+    position: relative;
+}
+
+.ui-ribbon-container .ui-ribbon-wrapper {
+    position: absolute;
+    overflow: hidden;
+    width: 85px;
+    height: 88px;
+    top: -3px;
+    right: -3px;
+}
+
+.ui-ribbon-container .ui-ribbon {
+    position: relative;
+    display: block;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    color: #fff; 
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    padding: 7px 0;
+    left: -5px;
+    top: 15px;
+    width: 120px;
+    line-height: 20px;
+    background-color: #555;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    z-index: 1000; 
+}
+
+.ui-ribbon-container .ui-ribbon:before,
+.ui-ribbon-container .ui-ribbon:after
+{
+    position:absolute;
+    content:" ";
+    line-height:0;
+    border-top:2px solid #555;
+    border-left: 2px solid transparent;
+    border-right: 2px solid transparent;
+    bottom: -2px;
+}
+                                                                                                                                                                                                                                                                                                                    
+.ui-ribbon-container .ui-ribbon:before {
+    left: 0;
+    bottom: -1px;
+}
+
+.ui-ribbon-container .ui-ribbon:after {
+    right: 0;
+}
+
+.ui-ribbon-container .ui-ribbon-primary .ui-ribbon {
+    background-color: #1C7EBB;
+
+}
+
+.ui-ribbon-container .ui-ribbon-primary .ui-ribbon:before,
+.ui-ribbon-container .ui-ribbon-primary .ui-ribbon:after {
+    border-top: 2px solid #1C7EBB;
+}
+                                
+.ui-ribbon-container .ui-ribbon-success .ui-ribbon {
+    background-color: #23AE89;
+
+}
+
+.ui-ribbon-container .ui-ribbon-success .ui-ribbon:before,
+.ui-ribbon-container .ui-ribbon-success .ui-ribbon:after {
+    border-top: 2px solid #23AE89;
+}
+                                
+.ui-ribbon-container .ui-ribbon-info .ui-ribbon {
+    background-color: #2EC1CC;
+
+}
+
+.ui-ribbon-container .ui-ribbon-info .ui-ribbon:before,
+.ui-ribbon-container .ui-ribbon-info .ui-ribbon:after {
+    border-top: 2px solid #2EC1CC;
+}
+
+.ui-ribbon-container .ui-ribbon-warning .ui-ribbon {
+    background-color: #FFB61C;
+}
+
+.ui-ribbon-container .ui-ribbon-warning .ui-ribbon:before, 
+.ui-ribbon-container .ui-ribbon-warning .ui-ribbon:after {
+    border-top: 2px solid #FFB61C;
+}
+
+.ui-ribbon-container .ui-ribbon-danger .ui-ribbon {
+    background-color: #E94B3B;
+}
+
+.ui-ribbon-container .ui-ribbon-danger .ui-ribbon:before, 
+.ui-ribbon-container .ui-ribbon-danger .ui-ribbon:after {
+    border-top: 2px solid #E94B3B;
+}

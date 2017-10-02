@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{17298EA0-AF73-4F30-B6F1-2066100D7D74}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Portal.Core</RootNamespace>
+    <AssemblyName>Portal.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Without LDAP|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Without LDAP\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;WITHOUTLDAP</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Abp, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.2.3.0\lib\net46\Abp.dll</HintPath>
+    </Reference>
+    <Reference Include="Abp.AutoMapper, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.AutoMapper.2.3.0\lib\net46\Abp.AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Abp.Zero, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.Zero.2.3.0\lib\net46\Abp.Zero.dll</HintPath>
+    </Reference>
+    <Reference Include="Abp.Zero.Common, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.Zero.Common.2.3.0\lib\net46\Abp.Zero.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Abp.Zero.Ldap, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.Zero.Ldap.2.3.0\lib\net46\Abp.Zero.Ldap.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Castle.Facilities.Logging, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.LoggingFacility.4.0.0\lib\net45\Castle.Facilities.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Castle.Windsor, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Windsor.4.0.0\lib\net45\Castle.Windsor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Elasticsearch.Net, Version=5.0.0.0, Culture=neutral, PublicKeyToken=96c599bbe3e70f5d, processorArchitecture=MSIL">
+      <HintPath>..\packages\Elasticsearch.Net.5.5.0\lib\net46\Elasticsearch.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="JetBrains.Annotations, Version=11.0.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.11.0.0\lib\net20\JetBrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop, Version=1.0.168.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Nest, Version=5.0.0.0, Culture=neutral, PublicKeyToken=96c599bbe3e70f5d, processorArchitecture=MSIL">
+      <HintPath>..\packages\NEST.5.5.0\lib\net46\Nest.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Nito.AsyncEx, Version=4.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nito.AsyncEx.4.0.1\lib\net45\Nito.AsyncEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Nito.AsyncEx.Concurrent, Version=4.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nito.AsyncEx.4.0.1\lib\net45\Nito.AsyncEx.Concurrent.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Nito.AsyncEx.Enlightenment, Version=4.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nito.AsyncEx.4.0.1\lib\net45\Nito.AsyncEx.Enlightenment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Collections.Immutable, Version=1.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.1.3.1\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.Linq.Dynamic.Core, Version=0.0.0.0, Culture=neutral, PublicKeyToken=0f07ec44de6ac832, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Dynamic.Core.1.0.7.6\lib\net46\System.Linq.Dynamic.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Authorization\LdapAuthenticationSource.cs" />
+    <Compile Include="Cache\Catalog\CatalogCache.cs" />
+    <Compile Include="Cache\Catalog\CatalogCacheItem.cs" />
+    <Compile Include="Cache\Catalog\ICatalogCache.cs" />
+    <Compile Include="Cache\Tag\ITagCache.cs" />
+    <Compile Include="Cache\Tag\TagCache.cs" />
+    <Compile Include="Cache\Author\AuthorCache.cs" />
+    <Compile Include="Cache\Tag\TagCacheItem.cs" />
+    <Compile Include="Cache\Author\AuthorCacheItem.cs" />
+    <Compile Include="Cache\Book\BookCacheItem.cs" />
+    <Compile Include="Cache\Book\BookCache.cs" />
+    <Compile Include="Cache\Author\IAuthorCache.cs" />
+    <Compile Include="Content\ContentDto.cs" />
+    <Compile Include="Content\Entities\BookErrorReport.cs" />
+    <Compile Include="Content\Entities\Common\ErrorReportBase.cs" />
+    <Compile Include="Content\Entities\TrainingErrorReport.cs" />
+    <Compile Include="Content\MessageSubjectType.cs" />
+    <Compile Include="DataFilters\FilterNames.cs" />
+    <Compile Include="Content\Builder\Common\BuilderSortBase.cs" />
+    <Compile Include="Cache\Book\EntityItem.cs" />
+    <Compile Include="Cache\Book\IBookCache.cs" />
+    <Compile Include="CoreConsts.cs" />
+    <Compile Include="CoreModule.cs" />
+    <Compile Include="ElasticSearch\BookIndexItem.cs" />
+    <Compile Include="ElasticSearch\ElasticSearchConfiguration.cs" />
+    <Compile Include="Content\Builder\AllDeletedBook.cs" />
+    <Compile Include="Content\Builder\AllNotApprovedBook.cs" />
+    <Compile Include="Content\Builder\AllBook.cs" />
+    <Compile Include="Content\Builder\Common\BuilderBase.cs" />
+    <Compile Include="Content\Builder\BookByAuthor.cs" />
+    <Compile Include="Content\Builder\BookByCatalog.cs" />
+    <Compile Include="Content\Builder\BookByFavorite.cs" />
+    <Compile Include="Content\Builder\BookBySimilar.cs" />
+    <Compile Include="Content\Builder\BookByTag.cs" />
+    <Compile Include="Content\Builder\Director.cs" />
+    <Compile Include="Content\Strategy\Filter\FilterById.cs" />
+    <Compile Include="Content\Strategy\Filter\LimitedResult.cs" />
+    <Compile Include="Content\Strategy\IFilterStrategy.cs" />
+    <Compile Include="Content\ContentType.cs" />
+    <Compile Include="Content\Entities\Author.cs" />
+    <Compile Include="Content\Entities\Book.cs" />
+    <Compile Include="Content\Entities\BookCatalog.cs" />
+    <Compile Include="Content\Entities\BookViewer.cs" />
+    <Compile Include="Content\Entities\Issue.cs" />
+    <Compile Include="Content\Entities\Publisher.cs" />
+    <Compile Include="Content\Entities\Tag.cs" />
+    <Compile Include="Content\Entities\Common\CatalogBase.cs" />
+    <Compile Include="Content\Entities\Common\ContentEntityBase.cs" />
+    <Compile Include="Content\Entities\Common\EntityBase.cs" />
+    <Compile Include="Content\SortType.cs" />
+    <Compile Include="Content\IApproved.cs" />
+    <Compile Include="Content\Entities\Language.cs" />
+    <Compile Include="Content\Entities\Company.cs" />
+    <Compile Include="Content\Entities\Training.cs" />
+    <Compile Include="Content\Entities\Common\ViewerBase.cs" />
+    <Compile Include="Content\Entities\TrainingCatalog.cs" />
+    <Compile Include="Content\Entities\TrainingViewer.cs" />
+    <Compile Include="EventHandlers\BookChangedEventHandler.cs" />
+    <Compile Include="EventHandlers\ContentChangedEventHandlerBase.cs" />
+    <Compile Include="Content\Strategy\ISelectStrategy.cs" />
+    <Compile Include="Content\Strategy\ISortStrategy.cs" />
+    <Compile Include="Content\Strategy\ContextStrategy.cs" />
+    <Compile Include="Content\Strategy\Select\SelectBookByAuthor.cs" />
+    <Compile Include="Content\Strategy\Select\SelectBookByTag.cs" />
+    <Compile Include="Content\Strategy\Select\SelectByCatalog.cs" />
+    <Compile Include="Content\Strategy\Select\SelectByDeleted.cs" />
+    <Compile Include="Content\Strategy\Select\SelectByFavorite.cs" />
+    <Compile Include="Content\Strategy\Select\SelectByNotApproved.cs" />
+    <Compile Include="Content\Strategy\Select\SelectByTitle.cs" />
+    <Compile Include="Content\Strategy\Select\SelectByUserAdded.cs" />
+    <Compile Include="Content\Strategy\Sort\SortBookByAuthor.cs" />
+    <Compile Include="Content\Strategy\Sort\SortByDate.cs" />
+    <Compile Include="Content\Strategy\Sort\SortByFavourite.cs" />
+    <Compile Include="Content\Strategy\Sort\SortByTitle.cs" />
+    <Compile Include="Content\Strategy\Sort\SortByViewer.cs" />
+    <Compile Include="Specifications\DeletedSpecif.cs" />
+    <Compile Include="Specifications\NotApprovedAndNotDeletedSpecif.cs" />
+    <Compile Include="Specifications\ApprovedAndNotDeletedSpecif.cs" />
+    <Compile Include="VersionHelper.cs" />
+    <Compile Include="Authorization\AppAuthorizationProvider.cs" />
+    <Compile Include="Authorization\LoginManager.cs" />
+    <Compile Include="Authorization\PermissionChecker.cs" />
+    <Compile Include="Authorization\PermissionNames.cs" />
+    <Compile Include="Authorization\Roles\RoleConfig.cs" />
+    <Compile Include="Authorization\Roles\StaticRoleNames.cs" />
+    <Compile Include="Configuration\AppSettingNames.cs" />
+    <Compile Include="Configuration\AppSettingProvider.cs" />
+    <Compile Include="Editions\EditionManager.cs" />
+    <Compile Include="Features\FeatureValueStore.cs" />
+    <Compile Include="MultiTenancy\Tenant.cs" />
+    <Compile Include="MultiTenancy\TenantManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Authorization\Roles\Role.cs" />
+    <Compile Include="Authorization\Roles\RoleManager.cs" />
+    <Compile Include="Authorization\Roles\RoleStore.cs" />
+    <Compile Include="Authorization\Users\User.cs" />
+    <Compile Include="Authorization\Users\UserManager.cs" />
+    <Compile Include="Authorization\Users\UserStore.cs" />
+    <Compile Include="Validation\ValidationHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Localization\Source\Portal-ru-RU.xml" />
+    <EmbeddedResource Include="Localization\Source\Portal.xml" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

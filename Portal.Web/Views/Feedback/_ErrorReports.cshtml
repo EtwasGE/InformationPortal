@@ -1,0 +1,65 @@
+﻿@model Portal.Web.Models.Feedback.PreViewErrorReportViewModel
+
+<section class="content">
+    @if (Model.IsShownResult)
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">@L("ErrorReportHeader")</h3>
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <th class="custom-index">#</th>
+                                    <th class="custom-content">@L("Content")</th>
+                                    <th>@L("Theme")</th>
+                                    <th>@L("Comment")</th>
+
+                                    <th>@L("Date")</th>
+                                    <th>@L("User")</th>
+                                    <th></th>
+                                </tr>
+                                @{var index = 1;}
+                                @foreach (var report in Model.Reports)
+                                {
+                                    <tr>
+                                        <td>@index</td>
+                                        <td>@report.ContentTitle</td>
+                                        <td>@report.Subject</td>
+                                        <td>@report.Comment</td>
+
+                                        <td>@report.CreationTime</td>
+                                        <td>@report.CreatorUser</td>
+                                        <td></td>
+                                    </tr>
+                                    index++;
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="box-footer clearfix">
+                        <ul class="pagination pagination-sm no-margin pull-right">
+                            <li><a href="#">«</a></li>
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">»</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsShownPagination)
+            {
+                @Html.Partial("~/Views/Shared/Content/_Pagination.cshtml", Model.Reports)
+            }
+        </div>
+    }
+    else
+    {
+       //TODO: сюда добавить сообщение, что ничего не найдено
+    }
+</section>

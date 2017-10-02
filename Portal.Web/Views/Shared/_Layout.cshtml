@@ -1,0 +1,85 @@
+﻿@using System.Threading
+@using System.Web.Optimization
+@using Abp.Configuration
+@using Abp.Timing
+@using Abp.Web.Mvc.Extensions
+@using Portal.Core.Configuration
+@{
+    Layout = null;
+    SetAntiForgeryCookie();
+    var uiTheme = SettingManager.GetSettingValue(AppSettingNames.UiTheme);
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="~/favicon.ico">
+    <title>Information Portal</title>
+
+    @Styles.Render("~/Bundles/vendor/css")
+
+    <!-- View specific styles -->
+    @RenderSection("styles", required: false)
+
+    <script type="text/javascript">
+        //This is used to get the application's root path from javascript. It's useful if you're running application in a virtual directory under IIS.
+        var abp = abp || {}; abp.appPath = '@ApplicationPath';
+    </script>
+
+</head>
+<body class="hold-transition @("skin-" + uiTheme) sidebar-mini">
+    <div class="wrapper">
+        <header class="main-header">
+            <a href="@Url.Action("Index", "Home")" class="logo">
+                <span class="logo-mini"><b>I</b>P</span>
+                <span class="logo-lg"><b>Information</b>Portal</span>
+            </a>
+            <nav class="navbar navbar-static-top" role="navigation">
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                @Html.Action("SideBarNav", "Layout", new { activeMenu = ViewBag.ActiveMenu })
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        @Html.Action("LanguageSelection", "Layout")
+                        @Html.Action("SideBarUserArea", "Layout")
+                        @*TODO: add Permission*@
+                        @*<li>
+                            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                        </li>*@
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        @Html.Action("LeftSideBar", "Layout")
+        <div class="content-wrapper">
+            @RenderBody()
+        </div>
+
+        @*TODO: add Permission*@
+        @*@Html.Action("RightSideBar", "Layout")*@
+    </div>
+
+    @Scripts.Render("~/Bundles/vendor/js/bottom")
+
+    <script>
+    //Localizing momentjs
+    moment.locale('@Thread.CurrentThread.CurrentUICulture.Name');
+    </script>
+
+    <!-- Dynamic scripts of ABP system (They are created on runtime and can not be bundled) -->
+    <script src="~/api/AbpServiceProxies/GetAll?v=@(Clock.Now.Ticks)"></script>
+    <script src="~/AbpScripts/GetScripts?v=@(Clock.Now.Ticks)" type="text/javascript"></script>
+
+    <!-- SignalR scripts -->
+    <script src="~/signalr/hubs"></script>
+    @Html.IncludeScript("~/Abp/Framework/scripts/libs/abp.signalr.js")
+
+    <!-- View specific scripts -->
+    @RenderSection("scripts", required: false)
+</body>
+</html>

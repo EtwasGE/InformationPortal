@@ -1,0 +1,12 @@
+﻿.form-line > .form-control {
+    min-width: 570px;
+    max-width: 570px;
+}
+
+.form-line > textarea.form-control {
+    min-height: 50px;
+}
+
+.form-line > label {
+    color: #444;
+}

@@ -1,0 +1,15 @@
+﻿@model Portal.Web.Models.LanguageSelectionViewModel
+@if (Model.Languages.Count > 1)
+{
+    <div class="language-switch-area">
+        <select class="form-control" onchange="location = this.value;">
+            @foreach (var languageInfo in Model.Languages)
+            {
+                <option selected="@(Model.CurrentLanguage.Name == languageInfo.Name)"
+                        value="@($"{ApplicationPath}AbpLocalization/ChangeCulture?cultureName={languageInfo.Name}&returnUrl={Request.Url}")">
+                    @languageInfo.Name.ToUpper()
+                </option>
+            }
+        </select>
+    </div>
+}

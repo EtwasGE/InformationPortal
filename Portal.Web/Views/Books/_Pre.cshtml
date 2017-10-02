@@ -1,0 +1,89 @@
+﻿@using Portal.Web.Extensions
+@using Portal.Web.Models.Content
+@model Portal.Web.Models.Content.Books.PreViewBookViewModel
+
+<section class="content-header">
+    <h1>
+        @Model.Header
+    </h1>
+    <ol class="breadcrumb">
+        <li>
+            <i class="fa fa-book"></i>
+            <span>
+                @L("ShownBook", Model.Books.ItemStart, Model.Books.ItemEnd, Model.Books.TotalItemCount)
+            </span>
+        </li>
+    </ol>
+</section>
+<section class="content">
+    @if (Model.IsShownResult)
+    {
+        @Html.Action("SortingPanel")
+        <div class="row equal">
+            @foreach (var book in Model.Books)
+            {
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-2">
+                    <div class="box box-default no-border">
+                        <div class="box-body box-body-books">
+                            <ul class="list-unstyled">
+                                <li title="@L("BookViewersCount")">
+                                    <i class="fa fa-eye"></i>
+                                    <span>
+                                        @book.ContentInfo.ViewersCount
+                                    </span>
+                                </li>
+                                <li title="@L("BookFavoritesCount")">
+                                    <i class="fa fa-star"></i>
+                                    <span>
+                                        @book.ContentInfo.FavoritesCount
+                                    </span>
+                                </li>
+                                @if (book.ContentInfo.IsRecommend)
+                                {
+                                    <li title="@L("BookRecommend")">
+                                        <i class="fa fa-thumbs-up"></i>
+                                    </li>
+                                }
+                            </ul>
+                            @Ajax.ActionLinkImg(book.Picture, "Detail", "Books",
+                                new AjaxOptions { UpdateTargetId = "update-content" }, null, new { bookId = book.Id })
+                            <div class="box-body-text">
+                                @Ajax.ActionLink(book.Title, "Detail", "Books", new { bookId = book.Id },
+                                    new AjaxOptions { UpdateTargetId = "update-content" })
+
+                                @if (!string.IsNullOrEmpty(book.Authors))
+                                {
+                                    <p>
+                                        @book.Authors
+                                    </p>
+                                }
+                            </div>
+                        </div>
+                        <div class="box-footer box-footer-books">
+                            <ul class="nav navbar-nav pull-left">
+                                <li title="@L("BookDateAdded")">
+                                    <i class="fa fa-calendar-o"></i>
+                                    <span>
+                                        @book.ContentInfo.CreationTime
+                                    </span>
+                                </li>
+                            </ul>
+                            <ul class="nav navbar-nav pull-right">
+                                @Html.Partial("~/Views/Shared/Content/_ControlPanel.cshtml", book.ControlPanel)
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            }
+            @if (Model.IsShownPagination)
+            {
+                @Html.Partial("~/Views/Shared/Content/_Pagination.cshtml", new PaginationViewModel { Results = Model.Books })
+            }
+            @Html.Partial("~/Views/Shared/Modals/_ModalContainer.cshtml")
+        </div>
+    }
+    else
+    {
+        //TODO: сюда добавить сообщение, что ничего не найдено
+    }
+</section>

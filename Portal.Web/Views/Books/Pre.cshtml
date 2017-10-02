@@ -1,0 +1,16 @@
+﻿@using Abp.Web.Mvc.Extensions
+@model Portal.Web.Models.Content.Books.PreViewBookViewModel
+@{
+    ViewBag.ActiveMenu = PageNames.Books;
+}
+@section styles
+{
+    
+}
+@section scripts
+{
+    @Html.IncludeScript("~/Views/Shared/Content/_ControlPanel.js")
+}
+<div id="update-content">
+    @Html.Partial("_Pre", Model)
+</div>

@@ -1,0 +1,65 @@
+﻿@using System.Threading
+@using System.Web.Optimization
+@using Abp.Timing
+@using Portal.Core
+@using Portal.Web.Helpers
+@{
+    SetAntiForgeryCookie();
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="shortcut icon" href="~/favicon.ico">
+
+    <title>Information Portal | Sign in</title>
+
+    @Styles.Render("~/Bundles/account-vendor/css")
+
+    <!-- View specific styles -->
+    @RenderSection("styles", required: false)
+
+    <script type="text/javascript">
+        //This is used to get the application's root path from javascript. It's useful if you're running application in a virtual directory under IIS.
+        var abp = abp || {}; abp.appPath = '@ApplicationPath';
+    </script>
+</head>
+
+<body class="hold-transition login-page">
+    @Html.Action("_AccountLanguages", "Account")
+
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="javascript:void(0);"><b>Information</b>Portal</a>
+        </div>
+
+        @RenderBody()
+
+        <div class="row">
+            <div class="col-xs-12 text-center" style="color: #444; padding-top: 10px;">
+                <small>&copy; @DateTime.Now.Year Tucana Engineering. <b>Version </b> @VersionHelper.Version [@VersionHelper.ReleaseDate.ToString("dd/MM/yyyy")]</small>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/Bundles/account-vendor/js/bottom")
+
+    <script>
+        //Localizing momentjs
+        moment.locale('@Thread.CurrentThread.CurrentUICulture.Name');
+    </script>
+
+    <!-- Dynamic scripts of ABP system (They are created on runtime and can not be bundled) -->
+    <script src="~/api/AbpServiceProxies/GetAll?v=@(Clock.Now.Ticks)"></script>
+    <script src="~/AbpScripts/GetScripts?v=@(Clock.Now.Ticks)" type="text/javascript"></script>
+
+    <!-- View specific scripts -->
+    @RenderSection("scripts", required: false)
+    @Html.PartialViewScripts()
+</body>
+</html>

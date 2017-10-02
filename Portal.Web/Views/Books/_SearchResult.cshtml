@@ -1,0 +1,184 @@
+﻿@using System.Web.Mvc.Html
+@using Abp.Collections.Extensions
+@using Nest
+@using Portal.Web.Extensions
+@using Portal.Web.Models.Content
+@model Portal.Web.Models.Content.Books.SearchBookViewModel
+
+@helper Highlight(HighlightFieldDictionary highlights, string key, object defaultResult = null)
+{
+    if (highlights.Any(x => x.Key == key))
+    {
+        var hl = highlights.First(x => x.Key == key);
+        WriteLiteral(hl.Value.Highlights.JoinAsString(", "));
+    }
+    else
+    {
+        if (defaultResult != null)
+        {
+            WriteLiteral(defaultResult);
+        }
+    }
+}
+
+@*TODO: убрать всю логику*@
+<section class="content-header">
+    <h1>
+        @Html.Raw(Model.IsShownResult
+            ? L("SearchResultHeader", Model.Query)
+            : L("NotSearchResultHeader", $"<b>{Model.Query}</b>"))
+    </h1>
+    <ol class="breadcrumb">
+        <li>
+            <i class="fa fa-book"></i>
+            <span>
+                @L("SearchResultCount", Model.Results.TotalItemCount, Math.Round((float)Model.Took / 1000, 3))
+            </span>
+        </li>
+    </ol>
+</section>
+
+<section class="content">
+    @if (!Model.IsShownResult && Model.IsShownSuggest)
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="suggest">
+                    <li>@L("DidYouMean")</li>
+                    @foreach (var suggestions in Model.Suggestions.Values)
+                    {
+                        foreach (var suggestion in suggestions)
+                        {
+                            foreach (var option in suggestion.Options)
+                            {
+                                <li>@Ajax.ActionLink(option.Text, "Search", new {query = option.Text},
+                                        new AjaxOptions {UpdateTargetId = "update-content", HttpMethod = "POST"})</li>
+                            }
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+    }
+
+    @if (Model.IsShownResult)
+    {
+        <div class="row equal">
+            @foreach (var result in Model.Results)
+            {
+                var book = result.Source;
+
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div class="box box-default no-border ui-ribbon-container">
+                        @if (book.IsRecommend)
+                        {
+                            <div class="ui-ribbon-wrapper ui-ribbon-danger">
+                                <div class="ui-ribbon">@L("TheBest")</div>
+                            </div>
+                        }
+                        <div class="box-header box-header-book-search">
+                            <a data-ajax="true" data-ajax-mode="replace" data-ajax-update="#update-content"
+                               href="@Url.Action("Detail", new {bookId = book.Id})">
+                                @Highlight(result.Highlights, "title", book.Title)
+                            </a>
+                        </div>
+                        <div class="box-body box-body-book-search">
+                            <div class="col-md-3">
+                                @Ajax.ActionLinkImg(book.Picture, "Detail", "Books",
+                                    new AjaxOptions { UpdateTargetId = "update-content" }, "img-responsive", new { bookId = book.Id })
+                            </div>
+                            <div class="col-md-9">
+                                <table class="table">
+                                    <tbody>
+                                        @if (!string.IsNullOrEmpty(book.Authors))
+                                        {
+                                            <tr>
+                                                <td>@L("Authors"):</td>
+                                                <td>@Highlight(result.Highlights, "authors", book.Authors)</td>
+                                            </tr>
+                                        }
+
+                                        @if (!string.IsNullOrEmpty(book.Description))
+                                        {
+                                            <tr>
+                                                <td>@L("Description"):</td>
+                                                <td class="fixheight">@Highlight(result.Highlights, "description", book.Description)</td>
+                                            </tr>
+                                        }
+
+                                        @if (!string.IsNullOrEmpty(book.DatePublication) && result.Highlights.Any(x => x.Key == "datePublication"))
+                                        {
+                                            <tr>
+                                                <td>@L("DatePublication"):</td>
+                                                <td>@Highlight(result.Highlights, "datePublication")</td>
+                                            </tr>
+                                        }
+
+                                        @if (!string.IsNullOrEmpty(book.Issue) && result.Highlights.Any(x => x.Key == "issue"))
+                                        {
+                                            <tr>
+                                                <td>@L("Issue"):</td>
+                                                <td>@Highlight(result.Highlights, "issue")</td>
+                                            </tr>
+                                        }
+
+                                        @if (!string.IsNullOrEmpty(book.Publisher) && result.Highlights.Any(x => x.Key == "publisher"))
+                                        {
+                                            <tr>
+                                                <td>@L("Publisher"):</td>
+                                                <td>@Highlight(result.Highlights, "publisher")</td>
+                                            </tr>
+                                        }
+
+                                        @if (!string.IsNullOrEmpty(book.Language) && result.Highlights.Any(x => x.Key == "language"))
+                                        {
+                                            <tr>
+                                                <td>@L("Language"):</td>
+                                                <td>@Highlight(result.Highlights, "language")</td>
+                                            </tr>
+                                        }
+
+                                        @if (book.Tags != null && result.Highlights.Any(x => x.Key == "tags"))
+                                        {
+                                            <tr>
+                                                <td colspan="2">
+                                                    <ul class="tags">
+                                                        <li><i class="fa fa-tags"></i></li>
+                                                        @foreach (var hl in result.Highlights.First(x => x.Key == "tags").Value.Highlights)
+                                                        {
+                                                            <li>
+                                                                <span>@Html.Raw(hl)</span>
+                                                            </li>
+                                                        }
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="box-footer box-footer-book-search">
+                            <ul class="nav navbar-nav pull-right">
+                                <li title="@L("OpenFile")">
+                                    @Html.ActionLinkIcon("File", "Books", "fa fa-download",
+                                        new { contentId = book.Id }, new { target = "_blank" })
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            }
+            @if (Model.IsShownPagination)
+            {
+                @Html.Partial("~/Views/Shared/Content/_Pagination.cshtml",
+               new PaginationViewModel
+               {
+                   Results = Model.Results,
+                   RouteValues = new { query = Model.Query },
+                   HttpMethod = "POST"
+               })
+            }
+        </div>
+    }
+</section>

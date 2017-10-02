@@ -1,0 +1,72 @@
+﻿@using Portal.Web.Extensions
+@model Portal.Web.Models.Layout.LeftSideBarViewModel
+@{
+    var controllerName = (string)Model.Menu.CustomData;
+}
+<aside class="main-sidebar">
+    <section class="sidebar">
+        @using (Ajax.BeginForm(actionName: "Search", controllerName: controllerName, routeValues: null,
+                          ajaxOptions: new AjaxOptions { UpdateTargetId = "update-content" },
+                          htmlAttributes: new { @class = "sidebar-form" }))
+        {
+            <div class="input-group">
+                @Html.TextBox(name: "query", value: null, htmlAttributes: new { @class = "form-control", placeholder = L("Search") })
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-flat">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
+        }
+        <ul class="sidebar-menu" data-widget="tree">
+            @foreach (var menuItem in Model.Menu.Items)
+            {
+                <li class="font-size-12">
+                    @Ajax.ActionLinkIconText(menuItem.DisplayName, menuItem.Url, controllerName,
+                        new AjaxOptions { UpdateTargetId = "update-content" }, menuItem.Icon)
+                </li>
+            }
+            <li class="header text-uppercase">
+                @Model.Menu.DisplayName
+            </li>
+
+            @foreach (var catalog in Model.Catalogs)
+            {
+                if (!catalog.IsActive)
+                {
+                    continue;
+                }
+
+                if (catalog.Childrens.Any(x => x.IsActive))
+                {
+                    <li class="treeview font-size-12">
+                        @Ajax.ActionLinkTree(catalog.Name, "Catalog", controllerName, new { catalogId = catalog.Id },
+                            new AjaxOptions { UpdateTargetId = "update-content" },
+                            "fa fa-folder", "fa fa-angle-left pull-right", null, "pull-right-container")
+                        <ul class="treeview-menu">
+                            @foreach (var childCatalog in catalog.Childrens)
+                            {
+                                if (childCatalog.IsActive)
+                                {
+                                    <li class="font-size-12">
+                                        @Ajax.ActionLinkIconText(childCatalog.Name, "Catalog", controllerName,
+                                            new AjaxOptions { UpdateTargetId = "update-content" },
+                                            "fa fa-circle-o", null, new { catalogId = childCatalog.Id })
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </li>
+                }
+                else
+                {
+                    <li class="font-size-12">
+                        @Ajax.ActionLinkIconText(catalog.Name, "Catalog", controllerName,
+                            new AjaxOptions { UpdateTargetId = "update-content" },
+                            "fa fa-circle-o", null, new { catalogId = catalog.Id })
+                    </li>
+                }
+            }
+        </ul>
+    </section>
+</aside>

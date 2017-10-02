@@ -1,0 +1,52 @@
+﻿@using Portal.Core.Authorization
+@using Portal.Web.Extensions
+@model Portal.Web.Models.Content.ControlPanelViewModel
+
+@{
+    var controllerName = ViewContext.RouteData.Values["controller"].ToString();
+}
+
+@if (IsGranted(PermissionNames.ContentChange))
+{
+    <li class="dropdown" title="@L("Settings")">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="fa fa-gear"></i>
+        </a>
+        <ul class="dropdown-menu">
+            <li id="@($"update-approve-{Model.Id}")" title="">
+                @Html.Partial("~/Views/Shared/Content/_Approve.cshtml", Model.Approve)
+            </li>
+            <li title="">
+                @Ajax.ActionLinkIconText(L("Edit"), "Edit", controllerName, new AjaxOptions { UpdateTargetId = "update-content" },
+                    "fa fa-edit", null, new { contentId = Model.Id })
+            </li>
+            <li id="@($"update-delete-{Model.Id}")" title="">
+                @Html.Partial("~/Views/Shared/Content/_Delete.cshtml", Model.Delete)
+            </li>
+        </ul>
+    </li>
+}
+else
+{
+    <li title="@L("ErrorReport")">
+        <a href="#" id="errorreport" data-content-id="@Model.Id" data-toggle="modal" data-target="#ModalContent">
+            <i class="fa fa-warning"></i>
+        </a>
+    </li>
+}
+@if (!Model.Delete.IsDeleted && Model.Approve.IsApproved)
+{
+    <li id="@($"update-favorite-{Model.Id}")">
+        @Html.Partial("~/Views/Shared/Content/_Favorite.cshtml", Model.Favorite)
+    </li>
+}
+<li title="@L("CopyLinkToClipboard")">
+    <a id="clipboard" data-clipboard-action="copy" data-clipboard-text="@Model.TextForClipboard">
+        <i class="fa fa-link"></i>
+    </a>
+</li>
+<li title="@L("OpenFile")">
+    @Html.ActionLinkIcon("File", controllerName, "fa fa-download",
+        new { contentId = Model.Id }, new { target = "_blank" })
+</li>
+

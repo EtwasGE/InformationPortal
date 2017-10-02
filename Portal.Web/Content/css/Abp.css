@@ -1,0 +1,35 @@
+﻿/* Dialogs (SweetAlert) ======================== */
+.sweet-alert {
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    -ms-border-radius: 0 !important;
+    border-radius: 0 !important;
+}
+
+    .sweet-alert p {
+        font-size: 14px !important;
+    }
+
+    .sweet-alert .sa-input-error {
+        top: 23px !important;
+        right: 13px !important;
+    }
+
+    .sweet-alert h2 {
+        font-size: 18px !important;
+        margin: 0 0 5px 0 !important;
+    }
+
+    .sweet-alert button {
+        font-size: 15px !important;
+        -webkit-border-radius: 0 !important;
+        -moz-border-radius: 0 !important;
+        -ms-border-radius: 0 !important;
+        border-radius: 0 !important;
+        padding: 5px 20px !important;
+    }
+
+.font-size-12 a > i,
+.font-size-12 a > span:not(.pull-right-container) {
+    font-size: 12px;
+}

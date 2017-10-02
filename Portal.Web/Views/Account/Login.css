@@ -1,0 +1,13 @@
+﻿/* Localization ======================== */
+.language-switch-area {
+    position: fixed;
+    width: auto;
+    top: 20px;
+    right: 20px;
+}
+
+.language-switch-area > select {
+    padding: initial;
+    text-align: center;
+    text-align-last: center;
+}

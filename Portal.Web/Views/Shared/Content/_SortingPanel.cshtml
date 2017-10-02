@@ -1,0 +1,48 @@
+﻿@using Portal.Web.Extensions
+@model Portal.Web.Models.Content.SortingViewModel
+    
+@{
+    var controllerName = ViewContext.RouteData.Values["controller"].ToString();
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="nav-tabs-sorting">
+            <ul class="nav nav-tabs">
+                <li class="pull-left">
+                    @if (Model.IsDescending)
+                    {
+                        @Ajax.ActionLinkIcon("Descending", controllerName,
+                            new AjaxOptions { UpdateTargetId = "update-content", HttpMethod = "POST" },
+                            "fa fa-sort-amount-asc", new { isDescending = !Model.IsDescending },
+                            new { title = L("AscendingSort") })
+                    }
+                    else
+                    {
+                        @Ajax.ActionLinkIcon("Descending", controllerName,
+                            new AjaxOptions { UpdateTargetId = "update-content", HttpMethod = "POST" },
+                            "fa fa-sort-amount-desc", new { isDescending = !Model.IsDescending },
+                            new { title = L("DescendingSort") })
+                    }
+                </li>
+                @*<li class="pull-right"><a href="#"><i class="fa fa-th"></i></a></li>*@
+                @foreach (var item in Model.Sortings)
+                {
+                    if (item.IsActive)
+                    {
+                        <li class="active text-uppercase"><a href="#">@item.DisplayName</a></li>
+                    }
+                    else
+                    {
+                        <li class="text-uppercase">
+                            @Ajax.ActionLink(linkText: item.DisplayName, actionName: "Sorting", controllerName: controllerName,
+                                routeValues: new { sortType = item.SortType },
+                                ajaxOptions: new AjaxOptions { UpdateTargetId = "update-content", HttpMethod = "POST" },
+                                htmlAttributes: new { title = item.Title })
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+</div>

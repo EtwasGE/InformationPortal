@@ -1,0 +1,35 @@
+﻿@using Portal.Web.Models.Common.Modals
+@model Portal.Web.Models.Feedback.ErrorReportModalViewModel
+@{
+    Layout = null;
+}
+<link href="~/Views/Feedback/_ErrorReportModal.css" rel="stylesheet" />
+
+@Html.Partial("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("ErrorReport")))
+<div class="modal-body">
+    <form name="ErrorReportForm" role="form">
+        @Html.HiddenFor(m => m.ContentId)
+        <div class="row clearfix">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <div class="form-line">
+                        <label>@L("Theme")</label>
+                        @Html.DropDownList("Subject", Model.Subjects, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <div class="form-line">
+                        <label>@L("Comment")</label>
+                        <textarea id="Comment" name="Comment" class="form-control" rows="3" required></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+@Html.Partial("~/Views/Shared/Modals/_ModalFooterWithSendAndCancel.cshtml")
+<script src="~/Views/Feedback/_ErrorReportModal.js"></script>

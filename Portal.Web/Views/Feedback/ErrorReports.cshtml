@@ -1,0 +1,17 @@
+﻿@using Abp.Web.Mvc.Extensions
+@model Portal.Web.Models.Feedback.PreViewErrorReportViewModel
+@{
+    ViewBag.ActiveMenu = Model.ActiveMenu;
+}
+@section styles
+{
+    @Html.IncludeStyle("~/Views/Feedback/ErrorReports.css")
+}
+@section scripts
+{
+
+}
+
+<div id="update-content">
+    @Html.Partial("_ErrorReports", Model)
+</div>

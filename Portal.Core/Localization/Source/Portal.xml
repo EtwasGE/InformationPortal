@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<localizationDictionary culture="en">
+  <texts>
+    <text name="HomePage" value="Home page" />
+    <text name="About" value="About" />
+    <text name="WellcomeMessage" value="Welcome to Portal!" />
+    <text name="LoginBoxMsg" value="Sign in to start your session" />
+
+    <text name="Books" value="Books" />
+    <text name="Trainings" value="Trainings" />
+
+    <text name="AllBooks" value="All books" />
+    <text name="FavoriteBooks" value="Favourites" />
+    <text name="AddBook" value="Add book" />
+    <text name="AllNotApprovedBooks" value="Unapproved" />
+    <text name="AllDeletedBooks" value="Deleted" />
+    <text name="BookErrorReports" value="Сообщения об ошибках" />
+
+    <text name="AllTrainings" value="All trainings" />
+    <text name="FavoriteTrainings" value="Favourites" />
+    <text name="AddTraining" value="Add training" />
+    <text name="AllNotApprovedTrainings" value="Unapproved" />
+    <text name="AllDeletedTrainings" value="Deleted" />
+    <text name="TrainingErrorReports" value="Сообщения об ошибках" />
+    
+    <text name="AllBookHeader" value="Обзор всех книг"/>
+    <text name="AllDeletedHeader" value="Удаленные книги"/>
+    <text name="AllNotApprovedHeader" value="Неутвержденные книги"/>
+    <text name="BookByAuthorHeader" value="Обзор книг по автору: {0}"/>
+    <text name="BookByCatalogHeader" value="Обзор книг из каталога: {0}"/>
+    <text name="BookByFavoriteHeader" value="Обзор моих избранных книг"/>
+    <text name="BookBySearchHeader" value="Обзор книг по запросу: {0}"/>
+    <text name="BookByTagHeader" value="Обзор книг по тегу: {0}"/>
+    <text name="ErrorReportHeader" value="Обзор всех сообщений об ошибках"/>
+
+    <text name="SearchResultHeader" value="Результаты поиска по запросу: {0}"/>
+    <text name="NotSearchResultHeader" value="По запросу {0} ничего не найдено."/>
+    <text name="SearchResultCount" value="Результатов: {0} ({1} сек.)"/>
+    <text name="DidYouMean" value="Did you mean:"/>
+
+    <text name="SortHeaderAuthor" value="по автору"/>
+    <text name="SortHeaderDate" value="новые"/>
+    <text name="SortHeaderFavorite" value="избранные"/>
+    <text name="SortHeaderName" value="по названию"/>
+    <text name="SortHeaderView" value="популярные"/>
+    <text name="SortTitleAuthor" value="Сортировать по автору"/>
+    <text name="SortTitleDate" value="Сортировать по дате"/>
+    <text name="SortTitleFavorite" value="Сортировать по количеству добавлений в избранное"/>
+    <text name="SortTitleName" value="Сортировать по названию"/>
+    <text name="SortTitleView" value="Сортировать по количеству просмотров"/>
+    <text name="AscendingSort" value="Сортировать от меньшего к большему"/>
+    <text name="DescendingSort" value="Сортировать от большего к меньшему"/>
+ 
+    <text name="BookViewersCount" value="Количество просмотров книги"/>
+    <text name="BookFavoritesCount" value="Количество пользователей, добавивших книгу в избранное"/>
+    <text name="BookRecommend" value="Книга рекомендуема к прочтению"/>
+    <text name="BookDateAdded" value="Дата добавления книги"/>
+    <text name="Settings" value="Настройки"/>
+    <text name="ErrorReport" value="Сообщить об ошибке"/>
+    <text name="CopyLinkToClipboard" value="Скопировать ссылку в буфер обмена"/>
+    <text name="OpenFile" value="Открыть файл"/>
+    <text name="RemoveFavorite" value="Удалить из избранного"/>
+    <text name="AddFavorite" value="Добавить в избранное"/>
+    <text name="SeeAlso" value="Смотрите также"/>
+    <text name="UserAddBook" value="Пользователь добавивший книгу"/>
+    <text name="Search" value="Search..." />
+
+    <text name="ErrorReportContent" value="Содержание не соответствует действительности" />
+    <text name="ErrorReportGrammatical" value="Грамматическая ошибка" />
+    <text name="ErrorReportLinkBroken" value="Ссылка на файл не работает" />
+    <text name="ErrorReportOther" value="Другое" />
+    
+    <text name="TheBest" value="Лучшее"/>
+    <text name="Author" value="Автор"/>
+    <text name="Authors" value="Авторы"/>
+    <text name="BookCatalogs" value="Каталог книг"/>
+    <text name="Catalog" value="Каталог"/>
+    <text name="Comment" value="Комментарий"/>
+    <text name="DatePublication" value="Год издания"/>
+    <text name="DateRegistration" value="Date registration"/>
+    <text name="Description" value="Описание"/>
+    <text name="EtAl" value="и др."/>
+    <text name="Format" value="Формат"/>
+    <text name="Issue" value="Версия издания"/>
+    <text name="Language" value="Язык"/>
+    <text name="Publisher" value="Издальство"/>
+    <text name="ShownBook" value="Показано: {0} - {1} из {2} книг"/>
+    <text name="ShownErrorReport" value="Показано: {0} - {1} из {2} сообщений"/>
+    <text name="Theme" value="Тема"/>
+    <text name="Title" value="Название"/>
+    <text name="TrainingCatalogs" value="Каталог тренингов"/>
+    
+    <text name="ContentChange" value="ContentChange"/>
+
+    <text name="PageNotFoundTitle" value="Страница не найдена"/>
+    <text name="PageNotFoundDetails" value="Страница устарела, была удалена или не существовала вовсе"/>
+   
+    <text name="FormIsNotValidMessage" value="Form is not valid. Please check and fix errors." />
+    <text name="TenantNameCanNotBeEmpty" value="Tenant name can not be empty" />
+
+    <text name="InvalidUserNameOrPassword" value="Invalid user name or password" />
+    <text name="ThereIsNoTenantDefinedWithName{0}" value="There is no tenant defined with name {0}" />
+    <text name="TenantIsNotActive" value="Tenant {0} is not active." />
+    <text name="UserIsNotActiveAndCanNotLogin" value="User {0} is not active and can not log in." />
+    <text name="UserEmailIsNotConfirmedAndCanNotLogin">Your email address is not confirmed. You can not login</text>
+    <text name="UserLockedOutMessage">The user account has been locked out. Please try again later.</text>
+    <text name="PleaseEnterLoginInformation" value="Please enter login information" />
+    <text name="TenancyName" value="Tenancy name" />
+    <text name="UserName" value="User name" />
+    <text name="Password" value="Password" />
+    <text name="RememberMe" value="Remember me" />
+    <text name="SignIn" value="Sign In" />
+
+    <text name="LoginFailed" value="Login failed!" />
+
+    <text name="NameSurname" value="Name surname" />
+    <text name="Name" value="Name" />
+    <text name="Surname" value="Surname" />
+    <text name="EmailAddress" value="Email address" />
+    <text name="Email" value="Email" />
+
+    <text name="Tenants" value="Tenants" />
+    <text name="SavedSuccessfully" value="Saved successfully" />
+    <text name="CreateNewTenant" value="Create new tenant" />
+    <text name="AdminEmailAddress" value="Admin email address" />
+    <text name="Save" value="Save" />
+    <text name="Cancel" value="Cancel" />
+    <text name="TenantName_Regex_Description" value="Tenant name must be at least 2 chars, starts with a letter and continue with letter, number, dash or underscore." />
+    <text name="DefaultPasswordIs" value="Default password is {0}" />
+    <text name="CanBeEmptyToLoginAsHost" value="Can be empty to login as host." />
+    <text name="Register" value="Register" />
+    <text name="OrLoginWith" value="Or login with" />
+    <text name="WaitingForActivationMessage" value="Your account is waiting to be activated by system admin." />
+    <text name="TenantSelection" value="Tenant Selection" />
+    <text name="TenantSelection_Detail" value="Please select one of the following tenants." />
+    <text name="Logout" value="Logout" />
+
+    <text name="RegisterFormUserNameInvalidMessage">Please dont enter an email address for username.</text>
+
+    <text name="DatabaseConnectionString" value="Database connection string" />
+    <text name="Users" value="Users" />
+    <text name="IsActive" value="Is active" />
+    <text name="FullName" value="Full name" />
+    <text name="CreateNewUser" value="Create new user" />
+    <text name="Yes" value="Yes" />
+    <text name="No" value="No" />
+    <text name="Optional" value="Optional" />
+    <text name="LeaveEmptyToSwitchToHost">Leave empty to switch to the host</text>
+
+    <text name="CurrentTenant">Current tenant</text>
+    <text name="NotSelected">Not selected</text>
+    <text name="Change">Change</text>
+    <text name="ChangeTenant">Change tenant</text>
+
+    <text name="MultiLevelMenu">Multi Level Menu</text>
+    <text name="Back">Back</text>
+    <text name="SuccessfullyRegistered">Successfully registered</text>
+    <text name="WaitingForEmailActivation">Your email address should be activated</text>
+    <text name="Roles">Roles</text>
+
+    <text name="Actions">Actions</text>
+    <text name="RoleName">Role Name</text>
+    <text name="DisplayName">Display Name</text>
+    <text name="CreateNewRole">Create New Role</text>
+    <text name="EditRole">Edit Role</text>
+    <text name="EditUser">Edit User</text>
+    <text name="Approve">Approve</text>
+    <text name="Edit">Edit</text>
+    <text name="Delete">Delete</text>
+    <text name="UnDelete">UnDelete</text>
+    <text name="Send">Send</text>
+    <text name="BackHome">Вернуться на главную</text>
+
+    <text name="Deleted">Deleted</text>
+    <text name="NotApproved">Not approved</text>
+    
+    <text name="Content">Content</text>
+    <text name="Date">Date</text>
+    <text name="User">User</text>
+
+  </texts>
+</localizationDictionary>

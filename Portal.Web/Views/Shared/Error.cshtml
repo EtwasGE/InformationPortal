@@ -1,0 +1,58 @@
+﻿@using System.Web.Optimization
+@using Abp.Collections.Extensions
+@model Abp.Web.Mvc.Models.ErrorViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="shortcut icon" href="~/favicon.ico">
+
+    <title>Information Portal | Error</title>
+
+    @Styles.Render("~/Bundles/error-vendor/css")
+</head>
+@*TODO: change css*@
+<body>
+    <div class="row">
+        <div class="error-page">
+            <h2 class="headline text-red">@Model.ErrorInfo.Code</h2>
+            <div class="error-content">
+                <h3>
+                    @Model.ErrorInfo.Message
+                </h3>
+                <p>
+                    @(!string.IsNullOrEmpty(Model.ErrorInfo.Details) ? Model.ErrorInfo.Details : Model.ErrorInfo.Message)
+                </p>
+                @* Show validation errors *@
+                @if (!Model.ErrorInfo.ValidationErrors.IsNullOrEmpty())
+                {
+                    <ul>
+                        @foreach (var validationError in Model.ErrorInfo.ValidationErrors)
+                        {
+                            <li>
+                                @validationError.Message
+                                @if (validationError.Members != null && validationError.Members.Any())
+                                {
+                                    <text>(@string.Join(", ", validationError.Members))</text>
+                                }
+                            </li>
+                        }
+                    </ul>
+                }
+                @*TODO: add link*@
+                <button type="button" class="btn btn-default btn-sm">@L("BackHome")</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

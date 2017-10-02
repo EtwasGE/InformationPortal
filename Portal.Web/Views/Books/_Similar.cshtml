@@ -1,0 +1,30 @@
+﻿@using Portal.Web.Extensions
+@model IList<Portal.Web.Models.Content.Books.ShortBookViewModel>
+
+<div class="box box-default no-border">
+    <div class="box-header box-header-book-seealso">
+        <h4 class="box-title">@L("SeeAlso"):</h4>
+    </div>
+    <div class="box-body box-body-book-seealso">
+        <div class="row equal">
+            @foreach (var book in Model)
+            {
+                <div class="col-xs-12 col-sm-3 col-md-2 col-lg-2">
+                    @Ajax.ActionLinkImg(book.Picture, "Detail", "Books",
+                            new AjaxOptions { UpdateTargetId = "update-content" }, null, new { bookId = book.Id })
+                    <div class="box-text">
+                        @Ajax.ActionLink(linkText: book.Title, actionName: "Detail", controllerName: "Books", routeValues: new { bookId = book.Id },
+                                ajaxOptions: new AjaxOptions { UpdateTargetId = "update-content" })
+
+                        @if (!string.IsNullOrEmpty(book.Authors))
+                        {
+                            <p>
+                                @book.Authors
+                            </p>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

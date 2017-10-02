@@ -1,0 +1,11 @@
+﻿@model Portal.Application.Content.ApproveDto
+
+@if (!Model.IsApproved)
+{
+    <a href="#" id="approve-content"
+       data-content-id="@Model.Id" data-update-targetId="@($"update-approve-{Model.Id}")"
+       data-msg="@($"{L("Approve")} \"{Model.Title}\"")">
+        <i class="fa fa-check-square-o"></i>
+        <span>@L("Approve")</span>
+    </a>
+}

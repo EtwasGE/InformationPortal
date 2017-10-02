@@ -1,0 +1,41 @@
+﻿@using Abp.Web.Mvc.Extensions
+@model Portal.Web.Models.Account.LoginFormViewModel
+@section Styles
+{
+    @Html.IncludeStyle("~/Views/Account/Login.css")
+}
+@section Scripts
+{
+    @Html.IncludeScript("~/Views/Account/Login.js")
+}
+<div class="login-box-body">
+    <p class="login-box-msg">@L("LoginBoxMsg")</p>
+    <form id="LoginForm" method="POST" asp-action="Login">
+        <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+        <input type="hidden" name="returnUrlHash" />
+        <div class="form-group has-feedback">
+            <input type="text" class="form-control danger" name="Username" placeholder="@L("UserName")" required autofocus maxlength="100">
+            <span class="glyphicon glyphicon-user form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+            <input type="password" class="form-control" name="Password" placeholder="@L("Password")" required maxlength="100">
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        </div>
+        <div class="row">
+            <div class="col-xs-8">
+                <div class="checkbox icheck">
+                    <label>
+                        <input type="checkbox" name="RememberMe" id="rememberme" value="true"> @L("RememberMe")
+                    </label>
+                </div>
+            </div>
+            <div class="col-xs-4">
+                <button id="LoginButton" type="submit" class="btn btn-danger btn-block btn-flat ld-ext-right">
+                    @L("SignIn")
+                    <div class="ld ld-ring ld-spin"></div>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
