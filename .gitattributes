@@ -65,3 +65,5 @@
 *.js linguist-vendored
 *.css linguist-vendored
 *.scss linguist-vendored
+*.cshtml linguist-vendored
+*.html linguist-vendored
