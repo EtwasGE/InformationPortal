@@ -32,11 +32,11 @@ namespace Portal.Core.Authorization
             {
                 user.MiddleName = userPrincipal.MiddleName;
             }
-            
-            if (userPrincipal.Enabled.HasValue)
-            {
-                user.IsActive = userPrincipal.Enabled.Value;
-            }
+            //TODO: Not working in IIS. Always return false.
+            //if (userPrincipal.Enabled.HasValue)
+            //{
+            //    user.IsActive = userPrincipal.Enabled.Value;
+            //}
         }
     }
 }
